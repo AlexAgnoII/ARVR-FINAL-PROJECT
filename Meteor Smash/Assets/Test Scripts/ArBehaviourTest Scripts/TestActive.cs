@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TestActive : MonoBehaviour
 {
-
+    //Test of physics on ARfoundation and its behaviour when being rendered / unrendered.
     [SerializeField] private GameObject gameObjectToTest;
     [SerializeField] private Text activeDisplayText;
     [SerializeField] private Text renderDisplayText;
