@@ -8,9 +8,9 @@ using UnityEngine.Experimental.XR;
 public class PlacementHandlerScript : MonoBehaviour
 {
 
-    [SerializeField] private GameObject targetGroupPlaceHolder; //target group prefab.
-    [SerializeField] private GameObject placementIndicator; 
-    [SerializeField] private ARSessionOrigin arOrigin;
+    [SerializeField] private GameObject targetGroupPlaceHolder; //target group prefab to spawn.
+    [SerializeField] private GameObject placementIndicator; //placement indicator prefab.
+    [SerializeField] private ARSessionOrigin arOrigin; //ar camera.
 
     private Pose placementPose;
     private bool placementPoseIsValid = false;
@@ -63,7 +63,7 @@ public class PlacementHandlerScript : MonoBehaviour
     private void UpdatePlacementPose()
     {
         //checks if u hit something in the real world from ur camera.
-        Vector3 screenCenter = Camera.current.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
+        Vector3 screenCenter = Camera.main.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
         List<ARRaycastHit> hits = new List<ARRaycastHit>();
         this.arOrigin.Raycast(screenCenter, hits,TrackableType.Planes);
 
@@ -72,7 +72,7 @@ public class PlacementHandlerScript : MonoBehaviour
         //if we found a valid plane, get the pose.
         if(this.placementPoseIsValid)
         {
-            Vector3 cameraForward = Camera.current.transform.forward;
+            Vector3 cameraForward = Camera.main.transform.forward;
             Vector3 cameraLook = new Vector3(cameraForward.x, 0.0f, cameraForward.z).normalized;
 
             this.placementPose = hits[0].pose;
