@@ -67,9 +67,9 @@ public class GameThrowHandlerScript : MonoBehaviour
                     this.ThrowMeteor();
                     this.thrown = true;
                 }
+
                 this.holding = false;
             }
-
         }
 
     }
@@ -92,6 +92,12 @@ public class GameThrowHandlerScript : MonoBehaviour
     {
         //return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began; //FOR MOBILE
         return Input.GetMouseButton(0); //FOR PC
+    }
+
+    private bool releasdInput()
+    {
+        //return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended; //FOR MOBILE
+        return Input.GetMouseButtonUp(0); //FOR PC
     }
 
     private Vector3 getInputPosition()
