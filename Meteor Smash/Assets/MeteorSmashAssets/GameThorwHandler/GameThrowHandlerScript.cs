@@ -11,11 +11,11 @@ public class GameThrowHandlerScript : MonoBehaviour
     private Vector3 meteorBasePosition;
     private Rigidbody meteorRB;
 
-    //Attributes used on ball throwing
-    [SerializeField] private float maxTime;
-    [SerializeField] private float minSwipeDistance;
-    [SerializeField] private float throwForceXY;
-    [SerializeField] private float throwForceZ;
+    //Attributes used on ball throwing (DEFAULT VALUES)
+    [SerializeField] private float maxTime = 1f; 
+    [SerializeField] private float minSwipeDistance = 10f;
+    [SerializeField] private float throwForceXY = 250f;
+    [SerializeField] private float throwForceZ = 5f;
     private float startTime;
     private float endTime;
     private Vector3 startPos;
@@ -30,6 +30,7 @@ public class GameThrowHandlerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        this.meteorPlaceHolder.gameObject.SetActive(true);
         this.meteor = this.meteorPlaceHolder.Find("Sphere");
         this.meteorRB = this.meteor.GetComponent<Rigidbody>();
         this.ResetBoolean(); //sets all boolean values to its defaults.
@@ -42,19 +43,33 @@ public class GameThrowHandlerScript : MonoBehaviour
 
         if(holding)
         {
+            this.ShowMeteor();
             this.UpdateHoldingObject(); //display object being held by hand.
-        }
 
+            //test (REMOVE WEN DONE).
+            this.ResetMeteor();
+        }
+        //test else
+        else
+        {
+            this.thrown = false;
+        }
+        /* real else.
+        else if(!thrown)
+        {
+            this.HideMeteor();
+        }
+        */
         //if not yet thrown, keep doing this.
         if (!thrown) {  
 
-            if(Input.GetMouseButton(0))
+            if(this.hasInput())
             {
                 this.holding = true;            
                 this.startTime = Time.time;
                 this.startPos = Input.mousePosition;
             }
-            else if (Input.GetMouseButtonUp(0))
+            else if (this.releasdInput())
             {
                 this.endTime = Time.time;
                 this.endPos = Input.mousePosition;
@@ -84,7 +99,7 @@ public class GameThrowHandlerScript : MonoBehaviour
         this.meteorRB.isKinematic = false;
         this.meteorRB.AddRelativeForce(-direction.x * this.throwForceXY,
                                        -direction.y * this.throwForceXY,
-                                       (throwForceZ / this.swipeTime));
+                                       throwForceZ / this.swipeTime);
     }
 
     //switcing input for debugging.
@@ -121,6 +136,25 @@ public class GameThrowHandlerScript : MonoBehaviour
     {
         this.meteorPlaceHolder.position = Camera.main.transform.position; // + Camera.main.transform.forward * 0.0f; //removed this for now.
         this.meteor.forward = Camera.main.transform.forward;
+    }
+
+    private void ShowMeteor()
+    {
+        if (!this.meteor.gameObject.activeSelf) { 
+            this.meteor.gameObject.SetActive(true);
+           //Debug.Log("showing meteor");
+        }
+
+    }
+
+    private void HideMeteor()
+    {
+        if (this.meteor.gameObject.activeSelf) { 
+            this.meteor.gameObject.SetActive(false);
+            //Debug.Log("hiding meteor.");
+        }
+
+
     }
 
     //Resets all values.

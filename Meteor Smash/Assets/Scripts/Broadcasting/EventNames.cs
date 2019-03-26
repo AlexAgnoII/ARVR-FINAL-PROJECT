@@ -13,6 +13,13 @@ public class EventNames {
 
 	public const string ON_PICTURE_CLICKED = "ON_PICTURE_CLICKED";
 
+    public class MeteorSmash
+    {
+        public const string ON_SPAWN_TARGET_DONE = "ON_SPAWN_TARGET_DONE";
+    }
+
+
+
 
 	public class ARBluetoothEvents {
 		public const string ON_START_BLUETOOTH_DEMO = "ON_START_BLUETOOTH_DEMO";

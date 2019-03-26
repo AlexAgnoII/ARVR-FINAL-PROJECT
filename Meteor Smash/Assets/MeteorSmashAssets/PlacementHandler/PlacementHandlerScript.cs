@@ -18,7 +18,7 @@ public class PlacementHandlerScript : MonoBehaviour
 
     private void Update()
     {
-
+        /* REAL WORKING CODE */
         if (!hasSpawnedTargetGroup) { 
             this.UpdatePlacementPose();
             this.UpdatePlacementIndicator();
@@ -31,12 +31,29 @@ public class PlacementHandlerScript : MonoBehaviour
                 this.spawnSuccess();
             }
         }
+
+
+        /* TEST CODE:
+        if (!hasSpawnedTargetGroup)
+        {
+            Instantiate(targetGroupPlaceHolder, this.placementIndicator.transform.position, Quaternion.identity);
+            this.spawnSuccess();
+            Debug.Log("SPAWN");
+        }*/
     }
 
     private void spawnSuccess()
     {
         this.placementIndicator.SetActive(false);
         this.hasSpawnedTargetGroup = true;
+        this.StartCoroutine(SendGoSignal());
+    }
+
+    //sends signal to be recieved by game handler.
+    private IEnumerator SendGoSignal()
+    {
+        yield return new WaitForSeconds(1.6f);
+        EventBroadcaster.Instance.PostEvent(EventNames.MeteorSmash.ON_SPAWN_TARGET_DONE);
     }
 
     private void spawnTargetGroup()

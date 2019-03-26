@@ -12,7 +12,7 @@ public class SpawnTargetGroupAnimScript : MonoBehaviour
     private float speed = 4.5f;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         this.targetGroupPos.localPosition = Vector3.Lerp(this.targetGroupPos.localPosition, this.targetPos, speed * Time.deltaTime);
     }
