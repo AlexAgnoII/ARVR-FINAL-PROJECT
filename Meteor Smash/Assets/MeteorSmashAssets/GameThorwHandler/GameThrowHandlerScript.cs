@@ -111,7 +111,9 @@ public class GameThrowHandlerScript : MonoBehaviour
     {
         Vector3 touchNear = this.getInputPosition();
         Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touchNear);
-        this.meteor.localPosition = new Vector3(touchPosition.x, touchPosition.y, touchPosition.z);
+        this.meteor.position = new Vector3(touchPosition.x, touchPosition.y, touchPosition.z);
+
+        //Debug.Log(touchPosition);
     }
 
     //Keeps the meteor to have a forward look similar to where the camera is looking.
