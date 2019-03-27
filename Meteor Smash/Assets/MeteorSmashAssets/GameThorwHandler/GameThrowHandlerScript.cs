@@ -26,13 +26,13 @@ public class GameThrowHandlerScript : MonoBehaviour
     private bool thrown, 
                  holding, 
                  curve;
-    private const float SPEED_1_LIMIT = 325f; //PC:25 MOBILE:325
-    private const float SPEED_2_LIMIT = 680f; //PC:50 MOBILE: 680
-    private const float SPEED_3_LIMIT = 820f; //PC:85 MOBILE: 820+
+    private const float SPEED_1_LIMIT = /*25f*/ 325; //PC:25 MOBILE:325
+    private const float SPEED_2_LIMIT = /*50f*/ 680; //PC:50 MOBILE: 680
+    private const float SPEED_3_LIMIT = /*85f*/ 820; //PC:85 MOBILE: 820+
 
-    private const float SPEED_1 = 100f;
-    private const float SPEED_2 = 250f;
-    private const float SPEED_3 = 300f;
+    private const float SPEED_1 = 100f; //100
+    private const float SPEED_2 = 320f; //250
+    private const float SPEED_3 = 435f; //300
 
     /*
      - remove all labeled with test on real deployment
@@ -163,8 +163,8 @@ public class GameThrowHandlerScript : MonoBehaviour
 
     private Vector3 getInputPosition()
     {
-        //return new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 0.7f); //FOR MOBILE
-        return new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane + 0.7f); //FOR PC
+        return new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 0.7f); //FOR MOBILE
+        //return new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane + 0.7f); //FOR PC
     }
 
     //Updates the object positon when while being held by user.
@@ -182,6 +182,10 @@ public class GameThrowHandlerScript : MonoBehaviour
     {
         this.meteorPlaceHolder.position = Camera.main.transform.position; // + Camera.main.transform.forward * 0.0f; //removed this for now.
         this.meteor.forward = Camera.main.transform.forward;
+
+        this.meteor.transform.eulerAngles = new Vector3(this.meteor.transform.eulerAngles.x,
+                                                        this.meteor.transform.eulerAngles.y,
+                                                        Camera.main.transform.eulerAngles.z);
     }
 
     private void ShowMeteor()
