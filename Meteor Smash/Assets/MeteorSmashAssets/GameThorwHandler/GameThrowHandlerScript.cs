@@ -26,9 +26,9 @@ public class GameThrowHandlerScript : MonoBehaviour
     private bool thrown, 
                  holding, 
                  curve;
-    private const float SPEED_1_LIMIT = 25f;
-    private const float SPEED_2_LIMIT = 50f;
-    private const float SPEED_3_LIMIT = 85f;
+    private const float SPEED_1_LIMIT = 325f; //PC:25 MOBILE:325
+    private const float SPEED_2_LIMIT = 680f; //PC:50 MOBILE: 680
+    private const float SPEED_3_LIMIT = 820f; //PC:85 MOBILE: 820+
 
     private const float SPEED_1 = 100f;
     private const float SPEED_2 = 250f;
@@ -151,14 +151,14 @@ public class GameThrowHandlerScript : MonoBehaviour
     //switcing input for debugging.
     private bool hasInput()
     {
-        //return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began; //FOR MOBILE
-        return Input.GetMouseButton(0); //FOR PC
+        return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began; //FOR MOBILE
+        //return Input.GetMouseButton(0); //FOR PC
     }
 
     private bool releasdInput()
     {
-        //return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended; //FOR MOBILE
-        return Input.GetMouseButtonUp(0); //FOR PC
+        return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended; //FOR MOBILE
+        //return Input.GetMouseButtonUp(0); //FOR PC
     }
 
     private Vector3 getInputPosition()

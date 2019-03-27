@@ -22,7 +22,7 @@ public class PlacementHandlerScript : MonoBehaviour
 
     private void Update()
     {
-        /* REAL WORKING CODE  
+        /* REAL WORKING CODE  */
         if (!hasSpawnedTargetGroup) { 
             this.UpdatePlacementPose();
             this.UpdatePlacementIndicator();
@@ -34,16 +34,16 @@ public class PlacementHandlerScript : MonoBehaviour
                 this.spawnTargetGroup();
                 this.spawnSuccess();
             }
-        }*/
+        }
 
 
-        /* TEST CODE: For pc. */
+        /* TEST CODE: For pc. 
         if (!hasSpawnedTargetGroup)
         {
             Instantiate(targetGroupPlaceHolder, this.placementIndicator.transform.position, Quaternion.identity);
             this.spawnSuccess();
             Debug.Log("SPAWN");
-        }
+        }*/
     }
 
     private void spawnSuccess()
