@@ -92,7 +92,6 @@ public class GameThrowHandlerScript : MonoBehaviour
                 if(this.swipeTime < this.maxTime && this.swipeDistance > this.minSwipeDistance)
                 {
                     this.ThrowMeteor();
-                    this.thrown = true;
                 }
 
                 this.holding = false;
@@ -114,7 +113,12 @@ public class GameThrowHandlerScript : MonoBehaviour
                                        -direction.y * speed, // * this.throwForceXY,
                                        throwForceZ / this.swipeTime);
 
-        
+        this.thrown = true;
+        this.meteor.parent = null;
+
+        Parameters param = new Parameters();
+        param.PutExtra("speed", this.swipeDistance);
+        EventBroadcaster.Instance.PostEvent("SPEED", param);
     }
 
     private float ThrowSpeedHandler()
@@ -210,7 +214,8 @@ public class GameThrowHandlerScript : MonoBehaviour
     private void ResetMeteor()
     {
         this.meteorRB.isKinematic = true;
-        this.meteorRB.velocity = Vector3.zero; 
+        this.meteorRB.velocity = Vector3.zero;
+        this.meteor.parent = this.meteorPlaceHolder;
     }
 
     //sets all boolean values to its defaults.

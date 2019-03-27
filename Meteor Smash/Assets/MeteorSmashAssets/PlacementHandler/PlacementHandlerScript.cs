@@ -22,7 +22,7 @@ public class PlacementHandlerScript : MonoBehaviour
 
     private void Update()
     {
-        /* REAL WORKING CODE 
+        /* REAL WORKING CODE  
         if (!hasSpawnedTargetGroup) { 
             this.UpdatePlacementPose();
             this.UpdatePlacementIndicator();
