@@ -26,6 +26,18 @@ public class GameThrowHandlerScript : MonoBehaviour
     private bool thrown, 
                  holding, 
                  curve;
+    private const float SPEED_1_LIMIT = 25f;
+    private const float SPEED_2_LIMIT = 50f;
+    private const float SPEED_3_LIMIT = 85f;
+
+    private const float SPEED_1 = 100f;
+    private const float SPEED_2 = 250f;
+    private const float SPEED_3 = 300f;
+
+    /*
+     - remove all labeled with test on real deployment
+     - dont forget to change hasInput and releasedInput for good touch performance.
+         */
 
     // Start is called before the first frame update
     void Start()
@@ -94,12 +106,42 @@ public class GameThrowHandlerScript : MonoBehaviour
     {
         Vector3 heading = this.startPos - this.endPos; // the value that points one object to the other
         Vector3 direction = heading / this.swipeDistance; //normalized direction.
-        
 
-        this.meteorRB.isKinematic = false;
-        this.meteorRB.AddRelativeForce(-direction.x * this.throwForceXY,
-                                       -direction.y * this.throwForceXY,
+        float speed = this.ThrowSpeedHandler();
+        
+        this.meteorRB.isKinematic = false;                   //old speed factor.
+        this.meteorRB.AddRelativeForce(-direction.x * speed, // * this.throwForceXY,
+                                       -direction.y * speed, // * this.throwForceXY,
                                        throwForceZ / this.swipeTime);
+
+        
+    }
+
+    private float ThrowSpeedHandler()
+    {
+
+        if (this.swipeDistance < SPEED_1_LIMIT)
+        {
+            Debug.Log("speed 1: " + this.swipeDistance);
+            return SPEED_1;
+        }
+        else if (this.swipeDistance < SPEED_2_LIMIT)
+        {
+            Debug.Log("speed 2: " + this.swipeDistance);
+            return SPEED_2;
+        }
+        else if (this.swipeDistance < SPEED_3_LIMIT)
+        {
+            Debug.Log("speed 3: " + this.swipeDistance);
+            return SPEED_3;
+        }
+
+        else
+        {
+            Debug.Log("Reached level 3 limit so give speed 3: " + this.swipeDistance);
+            return SPEED_3;
+        }
+
     }
 
     //switcing input for debugging.

@@ -7,6 +7,10 @@ using UnityEngine.Experimental.XR;
 
 public class PlacementHandlerScript : MonoBehaviour
 {
+    /*
+     - remove comment of test code, and comment working code for testing on pc.
+     - remove comment for real working code for mobile deployment.
+         */
 
     [SerializeField] private GameObject targetGroupPlaceHolder; //target group prefab to spawn.
     [SerializeField] private GameObject placementIndicator; //placement indicator prefab.
@@ -18,7 +22,7 @@ public class PlacementHandlerScript : MonoBehaviour
 
     private void Update()
     {
-        /* REAL WORKING CODE */
+        /* REAL WORKING CODE 
         if (!hasSpawnedTargetGroup) { 
             this.UpdatePlacementPose();
             this.UpdatePlacementIndicator();
@@ -30,16 +34,16 @@ public class PlacementHandlerScript : MonoBehaviour
                 this.spawnTargetGroup();
                 this.spawnSuccess();
             }
-        }
+        }*/
 
 
-        /* TEST CODE:
+        /* TEST CODE: For pc. */
         if (!hasSpawnedTargetGroup)
         {
             Instantiate(targetGroupPlaceHolder, this.placementIndicator.transform.position, Quaternion.identity);
             this.spawnSuccess();
             Debug.Log("SPAWN");
-        }*/
+        }
     }
 
     private void spawnSuccess()
