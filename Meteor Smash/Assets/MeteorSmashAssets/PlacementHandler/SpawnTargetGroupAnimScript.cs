@@ -11,6 +11,8 @@ public class SpawnTargetGroupAnimScript : MonoBehaviour
     private bool hasFinished = false;
     private float speed = 4.5f;
 
+    private const float MAX_DISTANCE_BETWEEN_CAMERA = 5f;
+
     // Update is called once per frame
     void FixedUpdate()
     {
