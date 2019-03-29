@@ -19,10 +19,11 @@ public class PlacementHandlerScript : MonoBehaviour
     private Pose placementPose;
     private bool placementPoseIsValid = false;
     private bool hasSpawnedTargetGroup = false;
+    private float secondsBeforePlaying = 1.6f;
 
     private void Update()
     {
-        /* REAL WORKING CODE  */
+        /* REAL WORKING CODE: for mobile 
         if (!hasSpawnedTargetGroup) { 
             this.UpdatePlacementPose();
             this.UpdatePlacementIndicator();
@@ -34,16 +35,16 @@ public class PlacementHandlerScript : MonoBehaviour
                 this.spawnTargetGroup();
                 this.spawnSuccess();
             }
-        }
+        }*/
 
 
-        /* TEST CODE: For pc. 
+        /* TEST CODE: For pc. */
         if (!hasSpawnedTargetGroup)
         {
             Instantiate(targetGroupPlaceHolder, this.placementIndicator.transform.position, Quaternion.identity);
             this.spawnSuccess();
             Debug.Log("SPAWN");
-        }*/
+        }
     }
 
     private void spawnSuccess()
@@ -56,7 +57,7 @@ public class PlacementHandlerScript : MonoBehaviour
     //sends signal to be recieved by game handler.
     private IEnumerator SendGoSignal()
     {
-        yield return new WaitForSeconds(1.6f);
+        yield return new WaitForSeconds(this.secondsBeforePlaying);
         EventBroadcaster.Instance.PostEvent(EventNames.MeteorSmash.ON_SPAWN_TARGET_DONE);
     }
 

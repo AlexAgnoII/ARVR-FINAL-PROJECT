@@ -23,12 +23,11 @@ public class GameThrowHandlerScript : MonoBehaviour
     private float swipeDistance;
     private float swipeTime;
 
-    private bool thrown, 
-                 holding, 
-                 curve;
-    private const float SPEED_1_LIMIT = /*25f*/ 325; //PC:25 MOBILE:325
-    private const float SPEED_2_LIMIT = /*50f*/ 680; //PC:50 MOBILE: 680
-    private const float SPEED_3_LIMIT = /*85f*/ 820; //PC:85 MOBILE: 820+
+    private bool thrown, holding;
+
+    private const float SPEED_1_LIMIT = 25f; //PC:25 MOBILE:325
+    private const float SPEED_2_LIMIT = 50f; //PC:50 MOBILE: 680
+    private const float SPEED_3_LIMIT = 85; //PC:85 MOBILE: 820+
 
     private const float SPEED_1 = 100f; //100
     private const float SPEED_2 = 320f; //250
@@ -46,6 +45,15 @@ public class GameThrowHandlerScript : MonoBehaviour
         this.meteor = this.meteorPlaceHolder.Find("Sphere");
         this.meteorRB = this.meteor.GetComponent<Rigidbody>();
         this.ResetBoolean(); //sets all boolean values to its defaults.
+
+        EventBroadcaster.Instance.AddObserver(EventNames.MeteorSmash.ON_METEOR_HIT_NOTHING, this.ResetAll);
+        EventBroadcaster.Instance.AddObserver(EventNames.MeteorSmash.ON_METEOR_HIT_TARGET, this.EndGame);
+    }
+
+    private void OnDestroy()
+    {
+        EventBroadcaster.Instance.RemoveObserver(EventNames.MeteorSmash.ON_METEOR_HIT_NOTHING);
+        EventBroadcaster.Instance.RemoveObserver(EventNames.MeteorSmash.ON_METEOR_HIT_TARGET);
     }
 
     // Update is called once per frame
@@ -57,21 +65,13 @@ public class GameThrowHandlerScript : MonoBehaviour
         {
             this.ShowMeteor();
             this.UpdateHoldingObject(); //display object being held by hand.
+        }
 
-            //test (REMOVE WEN DONE).
-            this.ResetMeteor();
-        }
-        //test else
-        else
-        {
-            this.thrown = false;
-        }
-        /* real else.
-        else if(!thrown)
+        else if (!thrown) //if user lets go of the meteor without throwing it, do this.
         {
             this.HideMeteor();
         }
-        */
+        
         //if not yet thrown, keep doing this.
         if (!thrown) {  
 
@@ -148,31 +148,6 @@ public class GameThrowHandlerScript : MonoBehaviour
 
     }
 
-    private Vector3 getInputPosition()
-    {
-        return Input.GetTouch(0).position;//MOBILE
-        //return Input.mousePosition; //PC
-    }
-
-    //switcing input for debugging.
-    private bool hasInput()
-    {
-        return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began; //FOR MOBILE
-        //return Input.GetMouseButton(0); //FOR PC
-    }
-
-    private bool releasdInput()
-    {
-        return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended; //FOR MOBILE
-        //return Input.GetMouseButtonUp(0); //FOR PC
-    }
-
-    private Vector3 getTouchNearPosition()
-    {
-        return new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 0.7f); //FOR MOBILE
-        //return new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane + 0.7f); //FOR PC
-    }
-
     //Updates the object positon when while being held by user.
     private void UpdateHoldingObject()
     {
@@ -192,6 +167,11 @@ public class GameThrowHandlerScript : MonoBehaviour
         this.meteor.transform.eulerAngles = new Vector3(this.meteor.transform.eulerAngles.x,
                                                         this.meteor.transform.eulerAngles.y,
                                                         Camera.main.transform.eulerAngles.z);
+    }
+
+    private void EndGame()
+    {
+
     }
 
     private void ShowMeteor()
@@ -232,9 +212,35 @@ public class GameThrowHandlerScript : MonoBehaviour
     private void ResetBoolean()
     {
         this.thrown = false;
-        this.curve = false;
         this.holding = false;
     }
 
 
+    /*- - - - - - - - - - - - - - - - - - - - - - - -*/
+    //Change this code to make it compatible for mobile or pc.
+
+    private Vector3 getInputPosition()
+    {
+        //return Input.GetTouch(0).position;//MOBILE
+        return Input.mousePosition; //PC
+    }
+
+    //switcing input for debugging.
+    private bool hasInput()
+    {
+        //return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began; //FOR MOBILE
+        return Input.GetMouseButton(0); //FOR PC
+    }
+
+    private bool releasdInput()
+    {
+        //return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended; //FOR MOBILE
+        return Input.GetMouseButtonUp(0); //FOR PC
+    }
+
+    private Vector3 getTouchNearPosition()
+    {
+        //return new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 0.7f); //FOR MOBILE
+        return new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane + 0.7f); //FOR PC
+    }
 }

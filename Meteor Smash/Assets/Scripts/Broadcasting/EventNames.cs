@@ -16,6 +16,8 @@ public class EventNames {
     public class MeteorSmash
     {
         public const string ON_SPAWN_TARGET_DONE = "ON_SPAWN_TARGET_DONE";
+        public const string ON_METEOR_HIT_TARGET = "ON_METEOR_HIT_TARGET";
+        public const string ON_METEOR_HIT_NOTHING = "ON_METEOR_HIT_NOTHING";
     }
 
 

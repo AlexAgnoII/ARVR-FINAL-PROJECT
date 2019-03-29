@@ -1,0 +1,16 @@
+FOR DEPLOYMENT
+
+Scene of game throwing should include:
+1) GameManager
+2) PlacementHandler
+3) GameThrowHandler(Disabled)
+4) PlacementIndicator
+5) ArSession
+6) ArSession Origin (Scale 8)
+
+For testing at pc:
+1) Change code in placementhandler (inside update function)
+2) Change code in gamethrowhandler (four functions, getInputPosition, hasInput, releasedInput, 	getTouchNearPosition).
+2.1) Change Speedlimit to specified pc values.
+3) Deactivate ArSession and ArSessionOrigin
+4)Activate/add Plane and camera (camera MUST have MainCamera tag.)
