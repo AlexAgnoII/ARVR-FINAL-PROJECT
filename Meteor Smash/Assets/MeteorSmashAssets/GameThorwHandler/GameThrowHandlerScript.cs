@@ -79,12 +79,12 @@ public class GameThrowHandlerScript : MonoBehaviour
             {
                 this.holding = true;            
                 this.startTime = Time.time;
-                this.startPos = Input.mousePosition;
+                this.startPos = this.getInputPosition();
             }
             else if (this.releasdInput())
             {
                 this.endTime = Time.time;
-                this.endPos = Input.mousePosition;
+                this.endPos = this.getInputPosition();
 
                 this.swipeDistance = (this.endPos - this.startPos).magnitude;
                 this.swipeTime = this.endTime - this.startTime;
@@ -148,6 +148,12 @@ public class GameThrowHandlerScript : MonoBehaviour
 
     }
 
+    private Vector3 getInputPosition()
+    {
+        return Input.GetTouch(0).position;//MOBILE
+        //return Input.mousePosition; //PC
+    }
+
     //switcing input for debugging.
     private bool hasInput()
     {
@@ -161,7 +167,7 @@ public class GameThrowHandlerScript : MonoBehaviour
         //return Input.GetMouseButtonUp(0); //FOR PC
     }
 
-    private Vector3 getInputPosition()
+    private Vector3 getTouchNearPosition()
     {
         return new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 0.7f); //FOR MOBILE
         //return new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane + 0.7f); //FOR PC
@@ -170,7 +176,7 @@ public class GameThrowHandlerScript : MonoBehaviour
     //Updates the object positon when while being held by user.
     private void UpdateHoldingObject()
     {
-        Vector3 touchNear = this.getInputPosition();
+        Vector3 touchNear = this.getTouchNearPosition();
         Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touchNear);
         this.meteor.position = new Vector3(touchPosition.x, touchPosition.y, touchPosition.z);
 
