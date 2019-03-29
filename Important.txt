@@ -2,12 +2,13 @@ FOR DEPLOYMENT
 
 Scene of game throwing should include:
 1) GameManager
-2) PlacementHandler
-3) GameThrowHandler(Disabled)
-4) PlacementIndicator
-5) MeteorPlaceHolder (disabled)
-6) ArSession
-7) ArSession Origin (Scale 8)
+1.1) PlacementHandler
+1.2) GameThrowHandler(Disabled)
+3) PlacementIndicator
+4) MeteorPlaceHolder (disabled)
+5) ArSession
+6) ArSession Origin (Scale 8)
+7) GameUI
 
 For testing at pc:
 1) Change code in placementhandler (inside update function)

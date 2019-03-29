@@ -25,13 +25,13 @@ public class GameThrowHandlerScript : MonoBehaviour
 
     private bool thrown, holding;
 
-    private const float SPEED_1_LIMIT = 325f; //PC:25 MOBILE:325
-    private const float SPEED_2_LIMIT = 680f; //PC:50 MOBILE: 680
-    private const float SPEED_3_LIMIT = 820; //PC:85 MOBILE: 820+
+    private const float SPEED_1_LIMIT = 25f; //PC:25 MOBILE:325
+    private const float SPEED_2_LIMIT = 50f; //PC:50 MOBILE: 680
+    private const float SPEED_3_LIMIT = 85; //PC:85 MOBILE: 820+
 
-    private const float SPEED_1 = 100f; //100
-    private const float SPEED_2 = 250f; //250
-    private const float SPEED_3 = 300f; //300
+    [SerializeField] private float SPEED_1 = 100f; //100
+    [SerializeField] private float SPEED_2 = 250f; //250
+    [SerializeField] private float SPEED_3 = 300f; //300
 
     /*
      - remove all labeled with test on real deployment
@@ -46,7 +46,7 @@ public class GameThrowHandlerScript : MonoBehaviour
         this.meteorRB = this.meteor.GetComponent<Rigidbody>();
         this.ResetBoolean(); //sets all boolean values to its defaults.
 
-        EventBroadcaster.Instance.AddObserver(EventNames.MeteorSmash.ON_METEOR_HIT_NOTHING, this.ResetAll);
+        EventBroadcaster.Instance.AddObserver(EventNames.MeteorSmash.ON_METEOR_HIT_NOTHING, this.RestartThrow);
         EventBroadcaster.Instance.AddObserver(EventNames.MeteorSmash.ON_METEOR_HIT_TARGET, this.EndGame);
     }
 
@@ -116,9 +116,11 @@ public class GameThrowHandlerScript : MonoBehaviour
         this.thrown = true;
         this.meteor.parent = null;
 
+
+        //testing purposes only.
         Parameters param = new Parameters();
-        param.PutExtra("speed", this.swipeDistance);
-        EventBroadcaster.Instance.PostEvent("SPEED", param);
+        param.PutExtra(EventNames.MeteorSmash.SPEED_VALUE_TO_PRINT, this.swipeDistance);
+        EventBroadcaster.Instance.PostEvent(EventNames.MeteorSmash.ON_SPEED_PRINT, param);
     }
 
     private float ThrowSpeedHandler()
@@ -171,7 +173,12 @@ public class GameThrowHandlerScript : MonoBehaviour
 
     private void EndGame()
     {
+        EventBroadcaster.Instance.PostEvent(EventNames.MeteorSmash.ON_GAME_WON);
+    }
 
+    private void RestartThrow() {
+        this.ResetAll();
+        EventBroadcaster.Instance.PostEvent(EventNames.MeteorSmash.ON_SHOW_USER_MISSED_MSG);
     }
 
     private void ShowMeteor()
@@ -217,30 +224,30 @@ public class GameThrowHandlerScript : MonoBehaviour
 
 
     /*- - - - - - - - - - - - - - - - - - - - - - - -*/
-    //Change this code to make it compatible for mobile or pc.
+    //Change these code to make it compatible for mobile or pc.
 
     private Vector3 getInputPosition()
     {
-        return Input.GetTouch(0).position;//MOBILE
-        //return Input.mousePosition; //PC
+        //return Input.GetTouch(0).position;//MOBILE
+        return Input.mousePosition; //PC
     }
 
     //switcing input for debugging.
     private bool hasInput()
     {
-        return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began; //FOR MOBILE
-        //return Input.GetMouseButton(0); //FOR PC
+        //return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began; //FOR MOBILE
+        return Input.GetMouseButton(0); //FOR PC
     }
 
     private bool releasdInput()
     {
-        return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended; //FOR MOBILE
-        //return Input.GetMouseButtonUp(0); //FOR PC
+        //return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended; //FOR MOBILE
+        return Input.GetMouseButtonUp(0); //FOR PC
     }
 
     private Vector3 getTouchNearPosition()
     {
-        return new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 0.7f); //FOR MOBILE
-        //return new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane + 0.7f); //FOR PC
+        //return new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 0.7f); //FOR MOBILE
+        return new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane + 0.7f); //FOR PC
     }
 }

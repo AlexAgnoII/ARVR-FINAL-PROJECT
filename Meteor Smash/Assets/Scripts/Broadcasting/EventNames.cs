@@ -15,9 +15,13 @@ public class EventNames {
 
     public class MeteorSmash
     {
+        public const string ON_SHOW_USER_MISSED_MSG = "ON_SHOW_USER_MISSED_MSG";
+        public const string ON_GAME_WON = "ON_GAME_WON";
         public const string ON_SPAWN_TARGET_DONE = "ON_SPAWN_TARGET_DONE";
         public const string ON_METEOR_HIT_TARGET = "ON_METEOR_HIT_TARGET";
         public const string ON_METEOR_HIT_NOTHING = "ON_METEOR_HIT_NOTHING";
+        public const string ON_SPEED_PRINT = "ON_SPEED_PRINT";
+        public const string SPEED_VALUE_TO_PRINT = "SPEED_VALUE_TO_PRINT";
     }
 
 

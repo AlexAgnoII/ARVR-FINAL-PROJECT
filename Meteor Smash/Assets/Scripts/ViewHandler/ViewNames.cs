@@ -15,6 +15,13 @@ public class ViewNames {
     public const string DOTA_UI_SCREEN = "DotaUIScreen";
     public const string SKILL_UI_SCREEN = "SkillUIScreen";
 
+    public class MeteorSmash
+    {
+        public const string GAME_THROW_SCREEN = "GameThrowScreen";
+        public const string WIN_SCREEN = "WinScreen";
+        public const string MAIN_MENU_SCREEN = "MainMenuScreen";
+    }
+
 
     public class DialogNames {
 		public const string TWO_CHOICE_DIALOG_NAME = "TwoChoiceDialog";
