@@ -20,6 +20,7 @@ public class ViewNames {
         public const string GAME_THROW_SCREEN = "GameThrowScreen";
         public const string WIN_SCREEN = "WinScreen";
         public const string MAIN_MENU_SCREEN = "MainMenuScreen";
+        public const string LEVEL_SELECTION_SCREEN = "LevelSelectionScreen";
     }
 
 

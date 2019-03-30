@@ -22,7 +22,7 @@ public class TestSpeedScript : MonoBehaviour
     private void OnDestroy()
     {
         EventBroadcaster.Instance.RemoveObserver(EventNames.MeteorSmash.ON_SPEED_PRINT);
-        EventBroadcaster.Instance.AddObserver(EventNames.MeteorSmash.ON_SHOW_USER_MISSED_MSG, ShowMissedMsg);
+        EventBroadcaster.Instance.RemoveObserver(EventNames.MeteorSmash.ON_SHOW_USER_MISSED_MSG);
     }
 
     private void ChangeText(Parameters param)

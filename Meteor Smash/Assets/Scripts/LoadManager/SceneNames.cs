@@ -19,4 +19,11 @@ public class SceneNames {
     public const string BAKED_LIGHTING_SCENE = "BakedLighting";
     public const string ADVANCED_ANIMATION_SCENE = "AdvancedAnimationDemo";
     public const string DOTA_2_UI_SAMPLE_SCENE = "Dota2UISample";
+
+
+    public class MeteorSmash
+    {
+        public const string GAME_THROW_SCENE = "GameThrowScene";
+        public const string MAIN_MENU_SCENE = "MainMenuScene";
+    }
 }
