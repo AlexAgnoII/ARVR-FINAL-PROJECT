@@ -128,7 +128,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &37418540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,7 +425,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &995011220
 AudioListener:
   m_ObjectHideFlags: 0
@@ -627,7 +627,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1926110566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -700,7 +700,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meteorPlaceHolder: {fileID: 1283069730}
   maxTime: 1
-  minSwipeDistance: 10
+  minSwipeDistance: 75
   throwForceXY: 250
   throwForceZ: 5
 --- !u!1 &1076871404881006
