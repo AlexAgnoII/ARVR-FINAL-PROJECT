@@ -23,8 +23,8 @@ public class PlacementHandlerScript : MonoBehaviour
 
     private void Update()
     {
-        //this.MobilePlacement();
-        this.PcPlacement();
+        this.MobilePlacement();
+        //this.PcPlacement();
 
 
     }
