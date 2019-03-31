@@ -13,8 +13,8 @@ public class GameThrowHandlerScript : MonoBehaviour
 
 
     //Attributes used on ball throwing (DEFAULT VALUES)
-    [SerializeField] private float maxTime = 1f;  //default 1
-    [SerializeField] private float minSwipeDistance = 10f; //default 10 (Currently 75-mobile at inspector)
+    private float maxTime = 1f;  //default 1
+    private float minSwipeDistance = 50f; //default 10 (Currently 50-mobile at inspector)
     [SerializeField] private float throwForceXY = 250f; //default 250
     [SerializeField] private float throwForceZ = 5f; //default 5
     private float startTime;
@@ -71,13 +71,11 @@ public class GameThrowHandlerScript : MonoBehaviour
 
         if(holding)
         {
-            this.StartPlayingMeteorTrailEffect();
             this.UpdateHoldingObject(); //display object being held by hand.
         }
 
         else if(!thrown)
         {
-            this.StopPlayingMeteorTrailEffect();
             this.ResetMeteorPosition();
         }
         
@@ -102,6 +100,7 @@ public class GameThrowHandlerScript : MonoBehaviour
                 if(this.swipeTime < this.maxTime && this.swipeDistance > this.minSwipeDistance)
                 {
                     this.ThrowMeteor();
+                    this.StartPlayingMeteorTrailEffect();
                 }
 
                 this.holding = false;
@@ -126,7 +125,6 @@ public class GameThrowHandlerScript : MonoBehaviour
         this.thrown = true;
         this.meteor.parent = null;
 
-
         //testing purposes only.
         Parameters param = new Parameters();
         param.PutExtra(EventNames.MeteorSmash.SPEED_VALUE_TO_PRINT, this.swipeDistance);
@@ -138,23 +136,23 @@ public class GameThrowHandlerScript : MonoBehaviour
 
         if (this.swipeDistance < SPEED_1_LIMIT)
         {
-            Debug.Log("speed 1: " + this.swipeDistance);
+           // Debug.Log("speed 1: " + this.swipeDistance);
             return SPEED_1;
         }
         else if (this.swipeDistance < SPEED_2_LIMIT)
         {
-            Debug.Log("speed 2: " + this.swipeDistance);
+           // Debug.Log("speed 2: " + this.swipeDistance);
             return SPEED_2;
         }
         else if (this.swipeDistance < SPEED_3_LIMIT)
         {
-            Debug.Log("speed 3: " + this.swipeDistance);
+            //Debug.Log("speed 3: " + this.swipeDistance);
             return SPEED_3;
         }
 
         else
         {
-            Debug.Log("Reached level 3 limit so give speed 3: " + this.swipeDistance);
+            //Debug.Log("Reached level 3 limit so give speed 3: " + this.swipeDistance);
             return SPEED_3;
         }
 
@@ -225,7 +223,7 @@ public class GameThrowHandlerScript : MonoBehaviour
     {
         if (!this.meteorEffect.isPlaying) { 
             this.meteorEffect.Play();
-            Debug.Log("Play trail effect. (GameThrowingscript)");
+            //Debug.Log("Play trail effect. (GameThrowingscript)");
         }
     }
 
@@ -234,7 +232,7 @@ public class GameThrowHandlerScript : MonoBehaviour
         if (this.meteorEffect.isPlaying) { 
             this.meteorEffect.Stop();
             this.meteorEffect.Clear();
-            Debug.Log("Stop trail effect. (GameThrowingscript)");
+            //Debug.Log("Stop trail effect. (GameThrowingscript)");
         }
     }
 

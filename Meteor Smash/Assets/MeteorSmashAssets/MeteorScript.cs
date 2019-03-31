@@ -18,7 +18,7 @@ public class MeteorScript : MonoBehaviour
     {
         if(!this.detectionDone)
         {
-            Debug.Log("HIT: " + collision.gameObject.tag);
+            //Debug.Log("HIT: " + collision.gameObject.tag);
             this.detectionDone = true;
             //Did it hit our target?
             if (collision.gameObject.tag.Equals(TagNames.TARGET))
@@ -49,7 +49,7 @@ public class MeteorScript : MonoBehaviour
 
         //stop particle effect
         this.meteorTrailEffect.Stop();
-        Debug.Log("Stop trail effect. (MeteorScript)");
+        //Debug.Log("Stop trail effect. (MeteorScript)");
     }
 
     private void ActivateMeteorGroundEffect()

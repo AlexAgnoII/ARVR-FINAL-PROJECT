@@ -25,8 +25,6 @@ public class PlacementHandlerScript : MonoBehaviour
     {
         this.MobilePlacement();
         //this.PcPlacement();
-
-
     }
 
     private void MobilePlacement()
@@ -53,7 +51,7 @@ public class PlacementHandlerScript : MonoBehaviour
         {
             Instantiate(targetGroupPHList[LevelDecider.Level], this.placementIndicator.transform.position, Quaternion.identity);
             this.spawnSuccess();
-            Debug.Log("SPAWN");
+            //Debug.Log("SPAWN");
         }
     }
 
