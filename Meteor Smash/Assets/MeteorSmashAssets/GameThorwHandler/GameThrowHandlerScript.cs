@@ -24,6 +24,9 @@ public class GameThrowHandlerScript : MonoBehaviour
     private float swipeDistance;
     private float swipeTime;
 
+    private ParticleSystem meteorEffect;
+
+
     private bool thrown, holding;
 
 
@@ -49,6 +52,7 @@ public class GameThrowHandlerScript : MonoBehaviour
         this.meteorRB = this.meteor.GetComponent<Rigidbody>();
         this.ResetMeteorPosition();
         this.ResetBoolean(); //sets all boolean values to its defaults.
+        this.meteorEffect = this.meteor.Find("MeteorTrailParticles").GetComponent<ParticleSystem>();
 
         EventBroadcaster.Instance.AddObserver(EventNames.MeteorSmash.ON_METEOR_HIT_NOTHING, this.RestartThrow);
         EventBroadcaster.Instance.AddObserver(EventNames.MeteorSmash.ON_METEOR_HIT_TARGET, this.EndGame);
@@ -67,11 +71,13 @@ public class GameThrowHandlerScript : MonoBehaviour
 
         if(holding)
         {
+            this.StartPlayingMeteorTrailEffect();
             this.UpdateHoldingObject(); //display object being held by hand.
         }
 
         else if(!thrown)
         {
+            this.StopPlayingMeteorTrailEffect();
             this.ResetMeteorPosition();
         }
         
@@ -213,6 +219,23 @@ public class GameThrowHandlerScript : MonoBehaviour
         }
 
 
+    }
+
+    private void StartPlayingMeteorTrailEffect()
+    {
+        if (!this.meteorEffect.isPlaying) { 
+            this.meteorEffect.Play();
+            Debug.Log("Play trail effect. (GameThrowingscript)");
+        }
+    }
+
+    private void StopPlayingMeteorTrailEffect()
+    {
+        if (this.meteorEffect.isPlaying) { 
+            this.meteorEffect.Stop();
+            this.meteorEffect.Clear();
+            Debug.Log("Stop trail effect. (GameThrowingscript)");
+        }
     }
 
     //Resets all values.

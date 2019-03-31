@@ -12,6 +12,7 @@ public class MeteorScript : MonoBehaviour
     [SerializeField] private GameObject meteorGroundParticleEffect;
     [SerializeField] private GameObject meteorAirParticleEffect;
     [SerializeField] private GameObject targetParticleEffect;
+    [SerializeField] private ParticleSystem meteorTrailEffect;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -46,7 +47,9 @@ public class MeteorScript : MonoBehaviour
         this.transform.localScale = new Vector3(0,0,0);
         this.transform.GetComponent<Rigidbody>().isKinematic = true;
 
-        //remove particle inside meteor.
+        //stop particle effect
+        this.meteorTrailEffect.Stop();
+        Debug.Log("Stop trail effect. (MeteorScript)");
     }
 
     private void ActivateMeteorGroundEffect()

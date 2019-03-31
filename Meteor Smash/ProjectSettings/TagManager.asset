@@ -9,6 +9,7 @@ TagManager:
   - FxTemporaire
   - DEAD_ZONE_GROUND
   - DEAD_ZONE_AIR
+  - METEOR_TRAIL_EFFECT
   layers:
   - Default
   - TransparentFX
