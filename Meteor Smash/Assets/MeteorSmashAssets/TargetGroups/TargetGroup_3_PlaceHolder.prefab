@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1341533756812524137}
   m_Layer: 0
   m_Name: pillar
-  m_TagString: DEAD_ZONE
+  m_TagString: DEAD_ZONE_AIR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 1341533757555646022}
   m_Layer: 0
   m_Name: DepthMask
-  m_TagString: DEAD_ZONE
+  m_TagString: DEAD_ZONE_GROUND
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 1341533757908750379}
   m_Layer: 0
   m_Name: base
-  m_TagString: DEAD_ZONE
+  m_TagString: DEAD_ZONE_AIR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 1341533758074679005}
   m_Layer: 0
   m_Name: pillar (1)
-  m_TagString: DEAD_ZONE
+  m_TagString: DEAD_ZONE_AIR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 1341533758137269581}
   m_Layer: 0
   m_Name: pillar (2)
-  m_TagString: DEAD_ZONE
+  m_TagString: DEAD_ZONE_AIR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -469,7 +469,7 @@ GameObject:
   - component: {fileID: 1341533758256972942}
   m_Layer: 0
   m_Name: pillar (3)
-  m_TagString: DEAD_ZONE
+  m_TagString: DEAD_ZONE_AIR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -687,7 +687,7 @@ GameObject:
   - component: {fileID: 1341533758441316711}
   m_Layer: 0
   m_Name: floor
-  m_TagString: DEAD_ZONE
+  m_TagString: DEAD_ZONE_GROUND
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

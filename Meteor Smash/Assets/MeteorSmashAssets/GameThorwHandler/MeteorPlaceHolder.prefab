@@ -152,3 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f80a31685d14b04597b4257d3cbe8a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meteorGroundParticleEffect: {fileID: 100006, guid: a2b9ce854d0a5004cba27ab45cbfe205,
+    type: 3}
+  meteorAirParticleEffect: {fileID: 100006, guid: 42f257b24c959a44794a35d032e9da12,
+    type: 3}
+  targetParticleEffect: {fileID: 100010, guid: d609d5ebc845aca409f72e9c6a56dc60, type: 3}

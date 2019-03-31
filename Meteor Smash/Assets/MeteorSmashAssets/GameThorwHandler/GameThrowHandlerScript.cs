@@ -29,9 +29,9 @@ public class GameThrowHandlerScript : MonoBehaviour
 
     //Values to change when testing on pc and deploying on mobile.
     private Vector3 meteorOriginPos = new Vector3(0f, -0.45f, 0f); // PC [0, -0.45, 0]
-    private const float SPEED_1_LIMIT = 325f; //PC:25 MOBILE:325
-    private const float SPEED_2_LIMIT = 680f; //PC:50 MOBILE: 680
-    private const float SPEED_3_LIMIT = 820; //PC:85 MOBILE: 820+
+    private const float SPEED_1_LIMIT = 25f; //PC:25 MOBILE:325
+    private const float SPEED_2_LIMIT = 50f; //PC:50 MOBILE: 680
+    private const float SPEED_3_LIMIT = 82; //PC:85 MOBILE: 820+
     private float SPEED_1 = 100f; //100 PC | 100 MOBILE
     private float SPEED_2 = 310f; //250 PC | 310 MOBILE
     private float SPEED_3 = 400f; //300 PC | 420 MOBILE
@@ -225,10 +225,16 @@ public class GameThrowHandlerScript : MonoBehaviour
     //set meteor to its defaults.
     private void ResetMeteor()
     {
+        this.ResetMeteorScale();
         this.meteorRB.isKinematic = true;
         this.meteorRB.velocity = Vector3.zero;
         this.meteor.parent = this.meteorPlaceHolder;
         this.ResetMeteorPosition();
+    }
+
+    private void ResetMeteorScale()
+    {
+        this.meteor.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
     }
 
     private void ResetMeteorPosition()
@@ -249,26 +255,26 @@ public class GameThrowHandlerScript : MonoBehaviour
 
     private Vector3 getInputPosition()
     {
-        return Input.GetTouch(0).position;//MOBILE
-        //return Input.mousePosition; //PC
+        //return Input.GetTouch(0).position;//MOBILE
+        return Input.mousePosition; //PC
     }
 
     //switcing input for debugging.
     private bool hasInput()
     {
-        return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began; //FOR MOBILE
-        //return Input.GetMouseButton(0); //FOR PC
+        //return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began; //FOR MOBILE
+        return Input.GetMouseButton(0); //FOR PC
     }
 
     private bool releasdInput()
     {
-        return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended; //FOR MOBILE
-        //return Input.GetMouseButtonUp(0); //FOR PC
+        //return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended; //FOR MOBILE
+        return Input.GetMouseButtonUp(0); //FOR PC
     }
 
     private Vector3 getTouchNearPosition()
     {
-        return new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 0.7f); //FOR MOBILE
-        //return new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane + 0.7f); //FOR PC
+        //return new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, Camera.main.nearClipPlane + 0.7f); //FOR MOBILE
+        return new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane + 0.7f); //FOR PC
     }
 }

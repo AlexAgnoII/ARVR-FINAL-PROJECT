@@ -23,6 +23,14 @@ public class PlacementHandlerScript : MonoBehaviour
 
     private void Update()
     {
+        //this.MobilePlacement();
+        this.PcPlacement();
+
+
+    }
+
+    private void MobilePlacement()
+    {
         /* REAL WORKING CODE: for mobile */
         if (!hasSpawnedTargetGroup) { 
             this.UpdatePlacementPose();
@@ -36,15 +44,17 @@ public class PlacementHandlerScript : MonoBehaviour
                 this.spawnSuccess();
             }
         }
+    }
 
-
-        /* TEST CODE: For pc. 
+    private void PcPlacement()
+    {
+        /* TEST CODE: For pc. */
         if (!hasSpawnedTargetGroup)
         {
             Instantiate(targetGroupPHList[LevelDecider.Level], this.placementIndicator.transform.position, Quaternion.identity);
             this.spawnSuccess();
             Debug.Log("SPAWN");
-        }*/
+        }
     }
 
     private void spawnSuccess()

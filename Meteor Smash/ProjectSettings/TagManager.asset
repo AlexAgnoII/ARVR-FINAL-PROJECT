@@ -6,7 +6,9 @@ TagManager:
   tags:
   - METEOR
   - TARGET
-  - DEAD_ZONE
+  - FxTemporaire
+  - DEAD_ZONE_GROUND
+  - DEAD_ZONE_AIR
   layers:
   - Default
   - TransparentFX
