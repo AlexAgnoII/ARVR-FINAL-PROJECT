@@ -71,11 +71,13 @@ public class GameThrowHandlerScript : MonoBehaviour
 
         if(holding)
         {
+            this.StartPlayingMeteorTrailEffect();
             this.UpdateHoldingObject(); //display object being held by hand.
         }
 
         else if(!thrown)
         {
+            this.StopPlayingMeteorTrailEffect();
             this.ResetMeteorPosition();
         }
         
