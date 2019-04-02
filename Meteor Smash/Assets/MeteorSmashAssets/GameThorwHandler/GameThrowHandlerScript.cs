@@ -28,6 +28,10 @@ public class GameThrowHandlerScript : MonoBehaviour
 
 
     private bool thrown, holding, hasDone, holdTooLong;
+    private float triesMult = 2;
+    private float timeMult_1 = 2;
+    private int tries = 0;
+    private float scoreStartTime;
 
 
     //Values to change when testing on pc and deploying on mobile.
@@ -38,6 +42,8 @@ public class GameThrowHandlerScript : MonoBehaviour
     private float SPEED_1 = 100f; //100 PC | 100 MOBILE
     private float SPEED_2 = 310f; //250 PC | 310 MOBILE
     private float SPEED_3 = 400f; //300 PC | 420 MOBILE
+
+
 
     /*
      - remove all labeled with test on real deployment
@@ -54,7 +60,8 @@ public class GameThrowHandlerScript : MonoBehaviour
         this.ResetBoolean(); //sets all boolean values to its defaults.
         this.meteorEffect = this.meteor.Find("MeteorTrailParticles").GetComponent<ParticleSystem>();
 
-        this.swipeTime = 0f;
+        this.scoreStartTime = Time.time;
+        ScoreStorage.Score = 0;
 
         EventBroadcaster.Instance.AddObserver(EventNames.MeteorSmash.ON_METEOR_HIT_NOTHING, this.RestartThrow);
         EventBroadcaster.Instance.AddObserver(EventNames.MeteorSmash.ON_METEOR_HIT_TARGET, this.EndGame);
@@ -145,6 +152,16 @@ public class GameThrowHandlerScript : MonoBehaviour
             this.holding = false;
             this.holdTooLong = false;
             this.hasDone = false;
+
+            this.meteor.localScale = new Vector3(0, 0, 0);
+        }
+    }
+
+    private void OnEnable()
+    {
+        if(!thrown)
+        {
+            this.ResetMeteorScale();
         }
     }
 
@@ -163,6 +180,7 @@ public class GameThrowHandlerScript : MonoBehaviour
 
         this.thrown = true;
         this.meteor.parent = null;
+        this.tries++;
     }
 
     private float ThrowSpeedHandler()
@@ -226,6 +244,24 @@ public class GameThrowHandlerScript : MonoBehaviour
 
     private void EndGame()
     {
+        float score = 100;
+        float timeItTook = Time.time - this.scoreStartTime;
+
+        if(timeItTook > 10)
+        {
+            score = score - timeItTook * timeMult_1;
+        }
+
+        if(tries > 1)
+        {
+            score -= tries * triesMult;
+        }
+
+        if(score < 0)
+        {
+            score = 0;
+        }
+        ScoreStorage.Score = (int) Mathf.Round(score);
         EventBroadcaster.Instance.PostEvent(EventNames.MeteorSmash.ON_GAME_WON);
     }
 

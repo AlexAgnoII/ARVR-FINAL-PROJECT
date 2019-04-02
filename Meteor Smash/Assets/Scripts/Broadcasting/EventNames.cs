@@ -15,8 +15,10 @@ public class EventNames {
 
     public class MeteorSmash
     {
-        public const string ON_GAME_WON = "ON_GAME_WON"; //Called on gamethrowhandler when game is successful, observed by GameThrowScreenScript.
-        
+        //Called on gamethrowhandler when game is successful, observed by GameThrowScreenScript.
+        public const string ON_GAME_WON = "ON_GAME_WON"; 
+        public const string VALUE_PLAYER_SCORE = "VALUE_PLAYER_SCORE";
+
         //called on meteorscript, observed on GameThrowHandlerScript
         public const string ON_METEOR_HIT_TARGET = "ON_METEOR_HIT_TARGET"; //event name called when ball thrown hits target called on meteorscsript
         public const string ON_METEOR_HIT_NOTHING = "ON_METEOR_HIT_NOTHING";// "" ball thrown did not hit target called on meteor script
