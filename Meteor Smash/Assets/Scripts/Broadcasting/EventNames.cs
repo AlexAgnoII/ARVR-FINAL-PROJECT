@@ -15,13 +15,22 @@ public class EventNames {
 
     public class MeteorSmash
     {
-        public const string ON_SHOW_USER_MISSED_MSG = "ON_SHOW_USER_MISSED_MSG";
-        public const string ON_GAME_WON = "ON_GAME_WON";
+        public const string ON_GAME_WON = "ON_GAME_WON"; //Called on gamethrowhandler when game is successful, observed by GameThrowScreenScript.
+        
+        //called on meteorscript, observed on GameThrowHandlerScript
+        public const string ON_METEOR_HIT_TARGET = "ON_METEOR_HIT_TARGET"; //event name called when ball thrown hits target called on meteorscsript
+        public const string ON_METEOR_HIT_NOTHING = "ON_METEOR_HIT_NOTHING";// "" ball thrown did not hit target called on meteor script
+
+        //test event name to check for target position when spawned. called on placementhandler script, Observerd by GameManagerScript.
         public const string ON_SPAWN_TARGET_DONE = "ON_SPAWN_TARGET_DONE";
-        public const string ON_METEOR_HIT_TARGET = "ON_METEOR_HIT_TARGET";
-        public const string ON_METEOR_HIT_NOTHING = "ON_METEOR_HIT_NOTHING";
-        public const string ON_SPEED_PRINT = "ON_SPEED_PRINT";
-        public const string SPEED_VALUE_TO_PRINT = "SPEED_VALUE_TO_PRINT";
+        public const string VALUE_TARGET_POSITION_X = "VALUE_TARGET_POSITION_X";
+        public const string VALUE_TARGET_POSITION_Y = "VALUE_TARGET_POSITION_Y";
+        public const string VALUE_TARGET_POSITION_Z = "VALUE_TARGET_POSITION_Z";
+
+        //this on though is called on gamemanager sscript, Observed by GameThrowScreensscript.
+        public const string ON_PRINT_TARGET_POSITION = "ON_PRINT_TARGET_POSITION"; 
+        public const string VALUE_TARGET_COORDINATES = "VALUE_TARGET_COORDINATES";
+
     }
 
 

@@ -126,11 +126,6 @@ public class GameThrowHandlerScript : MonoBehaviour
 
         this.thrown = true;
         this.meteor.parent = null;
-
-        //testing purposes only.
-        Parameters param = new Parameters();
-        param.PutExtra(EventNames.MeteorSmash.SPEED_VALUE_TO_PRINT, this.swipeDistance);
-        EventBroadcaster.Instance.PostEvent(EventNames.MeteorSmash.ON_SPEED_PRINT, param);
     }
 
     private float ThrowSpeedHandler()
@@ -199,7 +194,6 @@ public class GameThrowHandlerScript : MonoBehaviour
 
     private void RestartThrow() {
         this.ResetAll();
-        EventBroadcaster.Instance.PostEvent(EventNames.MeteorSmash.ON_SHOW_USER_MISSED_MSG);
     }
 
     private void ShowMeteor()

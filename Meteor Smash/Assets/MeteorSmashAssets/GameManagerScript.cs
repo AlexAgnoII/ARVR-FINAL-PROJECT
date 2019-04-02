@@ -10,11 +10,13 @@ public class GameManagerScript : MonoBehaviour
 
 
     private bool stageIsDone = false;
+    private Vector3 targetPosition;
 
     // Start is called before the first frame update
     void Start()
     {
         EventBroadcaster.Instance.AddObserver(EventNames.MeteorSmash.ON_SPAWN_TARGET_DONE, this.AllowThrowing);
+        
     }
 
     private void OnDestroy()
@@ -28,10 +30,20 @@ public class GameManagerScript : MonoBehaviour
         
     }
 
-    private void AllowThrowing()
+    private void AllowThrowing(Parameters param)
     {
         this.ActivateGameThrowingHandler();
         this.DeactivatePlacementHander();
+
+        this.targetPosition = new Vector3(param.GetFloatExtra(EventNames.MeteorSmash.VALUE_TARGET_POSITION_X, -1),
+                                          param.GetFloatExtra(EventNames.MeteorSmash.VALUE_TARGET_POSITION_Y, -1),
+                                          param.GetFloatExtra(EventNames.MeteorSmash.VALUE_TARGET_POSITION_Z, -1));
+        //TEST PURPOSES.
+        Parameters paramCoor = new Parameters();
+        string coordinates = " " + this.targetPosition.x + " " + this.targetPosition.y + " " + this.targetPosition.z;
+        paramCoor.PutExtra(EventNames.MeteorSmash.VALUE_TARGET_COORDINATES, coordinates);
+        EventBroadcaster.Instance.PostEvent(EventNames.MeteorSmash.ON_PRINT_TARGET_POSITION, paramCoor);
+
     }
 
     private void ActivateGameThrowingHandler()

@@ -86,14 +86,13 @@ GameObject:
   - component: {fileID: 2406788727527958645}
   - component: {fileID: 2406788727527958647}
   - component: {fileID: 2406788727527958646}
-  - component: {fileID: 2406788727527958640}
   m_Layer: 5
-  m_Name: SpeedText
+  m_Name: TestText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2406788727527958645
 RectTransform:
   m_ObjectHideFlags: 0
@@ -154,20 +153,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'S p e e d : '
---- !u!114 &2406788727527958640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2406788727527958644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8a1e8c138c175a478559a349150f380, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedText: {fileID: 2406788727527958646}
+  m_Text: Test Text
 --- !u!1 &2406788727827054169
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,3 +245,4 @@ MonoBehaviour:
   asRootScreen: 1
   entranceType: 0
   exitType: 0
+  testText: {fileID: 2406788727527958646}

@@ -66,7 +66,13 @@ public class PlacementHandlerScript : MonoBehaviour
     private IEnumerator SendGoSignal()
     {
         yield return new WaitForSeconds(this.secondsBeforePlaying);
-        EventBroadcaster.Instance.PostEvent(EventNames.MeteorSmash.ON_SPAWN_TARGET_DONE);
+
+        Parameters param = new Parameters();
+        param.PutExtra(EventNames.MeteorSmash.VALUE_TARGET_POSITION_X, this.placementPose.position.x);
+        param.PutExtra(EventNames.MeteorSmash.VALUE_TARGET_POSITION_Y, this.placementPose.position.y);
+        param.PutExtra(EventNames.MeteorSmash.VALUE_TARGET_POSITION_Z, this.placementPose.position.z);
+
+        EventBroadcaster.Instance.PostEvent(EventNames.MeteorSmash.ON_SPAWN_TARGET_DONE, param);
     }
 
     private void spawnTargetGroup()
