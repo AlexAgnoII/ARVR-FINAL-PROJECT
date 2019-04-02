@@ -38,14 +38,18 @@ public class GameThrowScreenScript : View
 
     private void ShowHeatPanel()
     {
-        if(!this.heatPanel.activeSelf)
-         this.heatPanel.SetActive(true);
+        if (!this.heatPanel.activeSelf) { 
+            this.heatPanel.SetActive(true);
+            this.testText.text = "Let go, its too hot!";
+        }
     }
 
     private void HideHeatPanel()
     {
-        if(this.heatPanel.activeSelf)
+        if (this.heatPanel.activeSelf) { 
             this.heatPanel.SetActive(false);
+            this.testText.text = "";
+        }
     }
 
     private void OnDestroy()

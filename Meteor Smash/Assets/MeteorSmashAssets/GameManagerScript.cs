@@ -49,11 +49,11 @@ public class GameManagerScript : MonoBehaviour
 
         if(this.distance < this.maxDistance)
         {
+            EventBroadcaster.Instance.PostEvent(EventNames.MeteorSmash.ON_PLAYER_LET_GO); //if player was holding the meteor for too long and he/she went too near.
             if (gameThrowHandler.activeSelf)
                 EventBroadcaster.Instance.PostEvent(EventNames.MeteorSmash.ON_PLAYER_INVALID_DISTANCE);
             
             this.DeactivateGameHandler();
-            EventBroadcaster.Instance.PostEvent(EventNames.MeteorSmash.ON_PLAYER_LET_GO); //if player was holding the meteor for too long and he/she went too near.
         }
 
         else

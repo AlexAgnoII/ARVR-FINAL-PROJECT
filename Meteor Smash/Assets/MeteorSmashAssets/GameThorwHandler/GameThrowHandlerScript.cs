@@ -136,6 +136,18 @@ public class GameThrowHandlerScript : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        //reset back to false and stop animation when user is holding + moved inside the not valid distance
+        if(!thrown)
+        {
+            this.StopPlayingMeteorTrailEffect();
+            this.holding = false;
+            this.holdTooLong = false;
+            this.hasDone = false;
+        }
+    }
+
     //throws the meteor on where the meteor is facing.
     private void ThrowMeteor()
     {

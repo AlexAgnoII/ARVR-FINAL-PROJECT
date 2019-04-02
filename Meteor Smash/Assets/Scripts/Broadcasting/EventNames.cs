@@ -37,7 +37,7 @@ public class EventNames {
 
         //posted in gamethrowscript, observed in gamethrowscreen
         public const string ON_PLAYER_HOLD_TOO_LONG = "ON_PLAYER_HOLD_TOO_LONG";
-        public const string ON_PLAYER_LET_GO = "ON_PLAYER_LET_GO";
+        public const string ON_PLAYER_LET_GO = "ON_PLAYER_LET_GO"; //also being posted from gamemanger to stop redscreen when player goes too near.
 
     }
 
