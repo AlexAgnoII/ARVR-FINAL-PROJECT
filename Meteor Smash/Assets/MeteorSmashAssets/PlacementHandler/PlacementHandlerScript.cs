@@ -59,6 +59,8 @@ public class PlacementHandlerScript : MonoBehaviour
     {
         this.placementIndicator.SetActive(false);
         this.hasSpawnedTargetGroup = true;
+
+        EventBroadcaster.Instance.PostEvent(EventNames.MeteorSmash.ON_REMOVE_TEXT_PLACEMENT);
         this.StartCoroutine(SendGoSignal());
     }
 

@@ -18,6 +18,12 @@ public class GameThrowScreenScript : View
         EventBroadcaster.Instance.AddObserver(EventNames.MeteorSmash.ON_PLAYER_INVALID_DISTANCE, this.PrintInvalidDistance);
         EventBroadcaster.Instance.AddObserver(EventNames.MeteorSmash.ON_PLAYER_HOLD_TOO_LONG, this.ShowHeatPanel);
         EventBroadcaster.Instance.AddObserver(EventNames.MeteorSmash.ON_PLAYER_LET_GO, this.HideHeatPanel);
+        EventBroadcaster.Instance.AddObserver(EventNames.MeteorSmash.ON_REMOVE_TEXT_PLACEMENT, this.ClearTextField);
+    }
+
+    private void ClearTextField()
+    {
+        this.testText.text = "";
     }
 
     private void PrintInvalidDistance()
@@ -59,6 +65,7 @@ public class GameThrowScreenScript : View
         EventBroadcaster.Instance.RemoveObserver(EventNames.MeteorSmash.ON_PLAYER_INVALID_DISTANCE);
         EventBroadcaster.Instance.RemoveObserver(EventNames.MeteorSmash.ON_PLAYER_HOLD_TOO_LONG);
         EventBroadcaster.Instance.RemoveObserver(EventNames.MeteorSmash.ON_PLAYER_LET_GO);
+        EventBroadcaster.Instance.RemoveObserver(EventNames.MeteorSmash.ON_REMOVE_TEXT_PLACEMENT);
 
     }
 

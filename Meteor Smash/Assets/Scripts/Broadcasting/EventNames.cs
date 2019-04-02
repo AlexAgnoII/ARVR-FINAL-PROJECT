@@ -41,6 +41,9 @@ public class EventNames {
         public const string ON_PLAYER_HOLD_TOO_LONG = "ON_PLAYER_HOLD_TOO_LONG";
         public const string ON_PLAYER_LET_GO = "ON_PLAYER_LET_GO"; //also being posted from gamemanger to stop redscreen when player goes too near.
 
+        //POSTED in placementhandler, listened by gamethrowscreen
+        public const string ON_REMOVE_TEXT_PLACEMENT = "ON_REMOVE_TEXT_PLACEMENT";
+
     }
 
 

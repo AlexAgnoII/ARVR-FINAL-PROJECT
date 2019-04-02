@@ -28,8 +28,8 @@ public class GameThrowHandlerScript : MonoBehaviour
 
 
     private bool thrown, holding, hasDone, holdTooLong;
-    private float triesMult = 2;
-    private float timeMult_1 = 2;
+    private float triesMult = 1.5f;
+    private float timeMult_1 = 1.2f;
     private int tries = 0;
     private float scoreStartTime;
 
@@ -247,7 +247,7 @@ public class GameThrowHandlerScript : MonoBehaviour
         float score = 100;
         float timeItTook = Time.time - this.scoreStartTime;
 
-        if(timeItTook > 10)
+        if(timeItTook > 15)
         {
             score = score - timeItTook * timeMult_1;
         }
