@@ -1195,6 +1195,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameThrowScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 2406788727827054169, guid: cc211f3656c104742a9fc0917fb03c75,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2406788727827054170, guid: cc211f3656c104742a9fc0917fb03c75,
         type: 3}
       propertyPath: m_LocalPosition.x

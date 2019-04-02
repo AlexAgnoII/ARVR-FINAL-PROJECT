@@ -31,6 +31,10 @@ public class EventNames {
         public const string ON_PRINT_TARGET_POSITION = "ON_PRINT_TARGET_POSITION"; 
         public const string VALUE_TARGET_COORDINATES = "VALUE_TARGET_COORDINATES";
 
+        //Posted on gamemanager, observed by gamethrowscreen.
+        public const string ON_PLAYER_VALID_DISTANCE = "ON_PLAYER_VALID_DISTANCE";
+        public const string ON_PLAYER_INVALID_DISTANCE = "ON_PLAYER_INVALID_DISTANCE";
+
     }
 
 
