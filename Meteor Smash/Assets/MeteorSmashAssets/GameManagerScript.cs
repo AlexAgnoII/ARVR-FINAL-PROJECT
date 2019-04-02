@@ -15,6 +15,9 @@ public class GameManagerScript : MonoBehaviour
     private float maxDistance = 8f;
     private float distance = 0f;
 
+    //proceed displaying text.
+    private bool proceed = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +53,7 @@ public class GameManagerScript : MonoBehaviour
                 EventBroadcaster.Instance.PostEvent(EventNames.MeteorSmash.ON_PLAYER_INVALID_DISTANCE);
             
             this.DeactivateGameHandler();
+            EventBroadcaster.Instance.PostEvent(EventNames.MeteorSmash.ON_PLAYER_LET_GO); //if player was holding the meteor for too long and he/she went too near.
         }
 
         else

@@ -35,6 +35,10 @@ public class EventNames {
         public const string ON_PLAYER_VALID_DISTANCE = "ON_PLAYER_VALID_DISTANCE";
         public const string ON_PLAYER_INVALID_DISTANCE = "ON_PLAYER_INVALID_DISTANCE";
 
+        //posted in gamethrowscript, observed in gamethrowscreen
+        public const string ON_PLAYER_HOLD_TOO_LONG = "ON_PLAYER_HOLD_TOO_LONG";
+        public const string ON_PLAYER_LET_GO = "ON_PLAYER_LET_GO";
+
     }
 
 

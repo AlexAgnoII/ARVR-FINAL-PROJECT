@@ -27,7 +27,7 @@ public class GameThrowHandlerScript : MonoBehaviour
     private ParticleSystem meteorEffect;
 
 
-    private bool thrown, holding;
+    private bool thrown, holding, hasDone, holdTooLong;
 
 
     //Values to change when testing on pc and deploying on mobile.
@@ -54,6 +54,8 @@ public class GameThrowHandlerScript : MonoBehaviour
         this.ResetBoolean(); //sets all boolean values to its defaults.
         this.meteorEffect = this.meteor.Find("MeteorTrailParticles").GetComponent<ParticleSystem>();
 
+        this.swipeTime = 0f;
+
         EventBroadcaster.Instance.AddObserver(EventNames.MeteorSmash.ON_METEOR_HIT_NOTHING, this.RestartThrow);
         EventBroadcaster.Instance.AddObserver(EventNames.MeteorSmash.ON_METEOR_HIT_TARGET, this.EndGame);
     }
@@ -73,12 +75,14 @@ public class GameThrowHandlerScript : MonoBehaviour
         {
             this.StartPlayingMeteorTrailEffect();
             this.UpdateHoldingObject(); //display object being held by hand.
+            this.CheckHold();
         }
 
         else if(!thrown)
         {
             this.StopPlayingMeteorTrailEffect();
             this.ResetMeteorPosition();
+            this.UndoCheckHold();
         }
         
         //if not yet thrown, keep doing this.
@@ -109,6 +113,27 @@ public class GameThrowHandlerScript : MonoBehaviour
             }
         }
 
+    }
+
+    private void CheckHold()
+    {
+        float timeCheck = Time.time - this.startTime;
+        if(timeCheck > this.maxTime && !hasDone)
+        {
+            EventBroadcaster.Instance.PostEvent(EventNames.MeteorSmash.ON_PLAYER_HOLD_TOO_LONG);
+            this.hasDone = true;
+            this.holdTooLong = true;
+        }
+    }
+
+    private void UndoCheckHold()
+    {
+        if(this.holdTooLong)
+        {
+            EventBroadcaster.Instance.PostEvent(EventNames.MeteorSmash.ON_PLAYER_LET_GO);
+            this.hasDone = false;
+            this.holdTooLong = false;
+        }
     }
 
     //throws the meteor on where the meteor is facing.
@@ -264,6 +289,8 @@ public class GameThrowHandlerScript : MonoBehaviour
     {
         this.thrown = false;
         this.holding = false;
+        this.hasDone = false;
+        this.holdTooLong = false;
     }
 
 
