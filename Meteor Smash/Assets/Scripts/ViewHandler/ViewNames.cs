@@ -21,6 +21,7 @@ public class ViewNames {
         public const string WIN_SCREEN = "WinScreen";
         public const string MAIN_MENU_SCREEN = "MainMenuScreen";
         public const string LEVEL_SELECTION_SCREEN = "LevelSelectionScreen";
+        public const string HELP_SCREEN = "HelpScreen";
     }
 
 
