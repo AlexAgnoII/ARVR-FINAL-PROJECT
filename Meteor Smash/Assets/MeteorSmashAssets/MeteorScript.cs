@@ -6,8 +6,8 @@ using UnityEngine;
 public class MeteorScript : MonoBehaviour
 {
     private bool detectionDone = false;
-    private const float SECONDS_BEFORE_SUCCESS_HIT = 2.1f;
-    private const float SECONDS_BEFORE_FAILED_HIT = 1.5f;
+    private const float SECONDS_BEFORE_SUCCESS_HIT = 1f;
+    private const float SECONDS_BEFORE_FAILED_HIT = 0.5f;
 
     [SerializeField] private GameObject meteorGroundParticleEffect;
     [SerializeField] private GameObject meteorAirParticleEffect;

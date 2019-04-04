@@ -28,8 +28,6 @@ public class GameThrowHandlerScript : MonoBehaviour
 
 
     private bool thrown, holding, hasDone, holdTooLong;
-    private float triesMult = 1.5f;
-    private float timeMult_1 = 1.2f;
     private int tries = 0;
     private float scoreStartTime;
 
@@ -42,6 +40,30 @@ public class GameThrowHandlerScript : MonoBehaviour
     private float SPEED_1 = 100f; //100 PC | 100 MOBILE
     private float SPEED_2 = 310f; //250 PC | 310 MOBILE
     private float SPEED_3 = 400f; //300 PC | 420 MOBILE
+
+
+    //SCORING
+    private float tier1_time_mult = 5;
+    private float tier2_time_mult = 4;
+    private float tier3_time_mult = 3;
+    private float tier4_time_mult = 2;
+
+    private float tier1_time_max = 10;
+    private float tier2_time_max = 20;
+    private float tier3_time_max = 30;
+    private float tier4_time_max = 40;
+
+    private float tier1_tries_bonus = 0;
+    private float tier2_tries_bonus = 3;
+    private float tier3_tries_bonus = 7;
+    private float tier4_tries_bonus = 11;
+
+    private float tier1_tries_max = 1;
+    private float tier2_tries_max = 5;
+    private float tier3_tries_max = 9;
+    private float tier4_tries_max = 13;
+
+
 
 
 
@@ -244,23 +266,45 @@ public class GameThrowHandlerScript : MonoBehaviour
 
     private void EndGame()
     {
-        float score = 100;
+        float score = 20;
         float timeItTook = Time.time - this.scoreStartTime;
 
-        if(timeItTook > 15)
+        if(timeItTook < this.tier1_time_mult)
         {
-            score = score - timeItTook * timeMult_1;
+            score *= tier1_time_mult;
+        } else if (timeItTook < this.tier2_time_max)
+        {
+            score *= tier2_time_mult;
+        }
+        else if (timeItTook < this.tier3_time_max)
+        {
+            score *= tier3_time_mult;
+        }
+        else if (timeItTook < this.tier4_time_max)
+        {
+            score *= tier4_time_mult;
         }
 
-        if(tries > 1)
+        if(tries < this.tier1_tries_max)
         {
-            score -= tries * triesMult;
+            //nothing.
+        }
+        else if (tries < this.tier2_tries_max)
+        {
+            score -= this.tier2_tries_bonus;
+        }
+        else if (tries < this.tier3_tries_max)
+        {
+            score -= this.tier3_tries_bonus;
+        }
+        else if (tries < this.tier4_tries_max)
+        {
+            score -= this.tier4_tries_bonus;
         }
 
-        if(score < 0)
-        {
-            score = 0;
-        }
+
+
+
         ScoreStorage.Score = (int) Mathf.Round(score);
         EventBroadcaster.Instance.PostEvent(EventNames.MeteorSmash.ON_GAME_WON);
     }
