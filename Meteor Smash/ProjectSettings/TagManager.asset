@@ -10,6 +10,7 @@ TagManager:
   - DEAD_ZONE_GROUND
   - DEAD_ZONE_AIR
   - METEOR_TRAIL_EFFECT
+  - FAKE_TARGET
   layers:
   - Default
   - TransparentFX
