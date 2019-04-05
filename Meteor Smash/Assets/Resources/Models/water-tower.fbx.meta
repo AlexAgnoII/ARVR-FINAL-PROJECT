@@ -3,21 +3,28 @@ guid: b27dbac2b45754f77893f0059edd12e7
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: blue
-    2100002: cream
-    2100004: red
+    100000: base
+    100002: roof
+    100004: //RootNode
+    400000: base
+    400002: roof
+    400004: //RootNode
+    2100000: cream
+    2100002: red
+    2100004: blue
     2100006: black
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Sphere
+    2300000: base
+    2300002: roof
+    3300000: base
+    3300002: roof
+    4300000: roof
+    4300002: base
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: black
-    second: {fileID: 2100000, guid: 144adc600d91e41208c0c0fbbe5098d6, type: 2}
+    second: {fileID: 2100000, guid: 79ba0fe6a165b4d358d8c3f086f6f8a8, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
